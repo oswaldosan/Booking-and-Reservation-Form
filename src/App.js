@@ -48,6 +48,14 @@ function App() {
   const { register, handleSubmit, watch, errors } = useForm();
 
   function onSubmit (data) {
+      
+     const storeObject = {
+      dateArrival: data.dateArrive,
+      dateDeparture: data.dateDeparture,
+      totalDays: totalDays,
+      name: data.name,
+      email: data.email
+     }
      setData({
       dateArrival: data.dateArrive,
       dateDeparture: data.dateDeparture,
@@ -55,6 +63,10 @@ function App() {
       name: data.name,
       email: data.email
     })
+    localStorage.setItem('cart', JSON.stringify(storeObject));
+
+    message.success('Data Added Succesfully');
+
   } 
   
 
@@ -76,6 +88,7 @@ function App() {
        {errors.exampleRequired && <span>This field is required</span>}
       
       <input type="submit" />
+    
     </form>
      <br/><br/>
      <Cart></Cart>
