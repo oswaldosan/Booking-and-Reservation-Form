@@ -4,6 +4,27 @@ export const DataContext = createContext();
 
 export const DataProvider = ({children}) => {
 
+    const packages = [
+        {
+         name: '2 noches 3 días Todo Incluido Premium con Ferry',
+         img: '/ferrypremium.jpg',
+         price: '$289',
+        },
+        {
+         name: '2 noches 3 días Todo Incluido Premium con Ferry',
+         img: '/flightpremium.jpg',
+         price: '$429',
+        },
+        {
+         name: '2 noches 3 días Todo Incluido Premium con Ferry',
+         img: '/capremium.jpg',
+         price: '$699',
+        }        
+     ]
+
+
+
+
     const initLocal = localStorage.getItem('cart');
 
     const [data, setData] = useState({
@@ -34,7 +55,8 @@ export const DataProvider = ({children}) => {
     return (
         <DataContext.Provider value={{
             data,
-            setData
+            setData,
+            packages
         }}>
             {children}
         </DataContext.Provider>

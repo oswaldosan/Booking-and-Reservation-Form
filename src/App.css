@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+
+.tarjeta {
+ display: flex;
+ flex-wrap: wrap;
+ align-items: center;
+ justify-content: center;
+}
