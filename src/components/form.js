@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { DataContext } from '../context/Datacontext';
 import moment from 'moment';
 
-function Form() {
+function Form(props) {
   function disabledDate(current) {
     // Can not select days before today and today
     return current && current < moment().endOf('day');
@@ -46,6 +46,7 @@ function Form() {
   function onSubmit (data) {
       
      const storeObject = {
+      packageName: props.packageName,
       dateArrival: data.dateArrive,
       dateDeparture: data.dateDeparture,
       totalDays: totalDays,
@@ -53,6 +54,7 @@ function Form() {
       email: data.email
      }
      setData({
+      packageName: props.packageName,
       dateArrival: data.dateArrive,
       dateDeparture: data.dateDeparture,
       totalDays: totalDays,
@@ -68,8 +70,10 @@ function Form() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
 
+      <h2>{props.packageName}</h2>
+      <form onSubmit={handleSubmit(onSubmit)}>
+     <label>Arrival Date: </label> <br/>
        <DatePicker onChange={handleChangeArrival} disabledDate={disabledDate}></DatePicker> <br/>
        <DatePicker onChange={handleChangeDeparture} disabledDate={disabledDate}></DatePicker> <br/>
      
@@ -78,8 +82,13 @@ function Form() {
        <input name="dateDeparture" ref={register} defaultValue={dateDepart} placeholder="date field" />   <br/>
       </div>
       
+      <label>Full Name: </label> <br/>
        <input name="name" placeholder="NAMEE" ref={register} />   <br/>
+
+       <label>Guests: </label> <br/>
+       <input type="number" name="guests" placeholder="NAMEE" ref={register} />   <br/>
       
+       <label>Email: </label><br/>
        <input name="email" placeholder="EMAIL" ref={register({ required: true })} />   <br/>
        {errors.exampleRequired && <span>This field is required</span>}
       

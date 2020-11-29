@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Card, Avatar } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import Form from './form'
+import { Modal } from 'antd';
 
 const { Meta } = Card;
 
 
 const TheCard = (props) => {
+
+   const [visible, setVisible] = useState(false)
+   
+   function bookClick () {
+       setVisible(true)
+   }
+   function handleCancel () {
+       setVisible(false)
+   }
+
     return (  
+      <>
         <Card
         style={{ width: 300, margin: 20 }}
         cover={
@@ -16,17 +28,22 @@ const TheCard = (props) => {
           />
         }
         actions={[
-         <div>Book Now</div>,
+         <div onClick={bookClick}>Book Now</div>,
         ]}
       >
-        <Meta
-          avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-          title={props.name}
-          description={props.price}
-        />
-        <div>THIS IS OTHER DIV</div>
+        <Meta/>
+        <h1>{props.packageName}</h1>
+        <h3>{props.price}</h3>
       </Card>
-
+       <Modal
+          title="Basic Modal"
+          visible={visible}
+          /*onOk={this.handleOk}*/
+          onCancel={handleCancel}
+        >
+           <Form packageName={props.packageName}></Form>
+        </Modal>
+    </>
     );
 }
  

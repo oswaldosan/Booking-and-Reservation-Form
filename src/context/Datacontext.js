@@ -11,12 +11,12 @@ export const DataProvider = ({children}) => {
          price: '$289',
         },
         {
-         name: '2 noches 3 días Todo Incluido Premium con Ferry',
+         name: '2 noches 3 Con Vuelo Incluido PREMIUM',
          img: '/flightpremium.jpg',
          price: '$429',
         },
         {
-         name: '2 noches 3 días Todo Incluido Premium con Ferry',
+         name: '2 noches 3 días Todo Incluido PREMIUM CENTROAMERICA',
          img: '/capremium.jpg',
          price: '$699',
         }        
@@ -28,6 +28,7 @@ export const DataProvider = ({children}) => {
     const initLocal = localStorage.getItem('cart');
 
     const [data, setData] = useState({
+        packageName: '',
         dateArrival: '',
         dateDeparture: '',
         totalDays: '',
@@ -40,6 +41,7 @@ export const DataProvider = ({children}) => {
         if(initLocal) {
            let data = JSON.parse(initLocal)
             setData({
+                packageName: data.packageName,
                 dateArrival: data.dateArrival,
                 dateDeparture: data.dateDeparture,
                 totalDays: data.totalDays,
@@ -47,6 +49,7 @@ export const DataProvider = ({children}) => {
                 email: data.email
               })
         } else {
+            console.log('No data on local storage')
 
         }
        

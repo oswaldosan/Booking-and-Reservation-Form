@@ -28,7 +28,7 @@ function App() {
     <div className="tarjeta">
     {paquetes.map((pack, index) => (
     <TheCard key={index}
-      name={pack.name}
+      packageName={pack.name}
       img={pack.img}
       price={pack.price}
     ></TheCard>
